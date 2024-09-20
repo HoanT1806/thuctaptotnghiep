@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admins\DanhMucController;
-
+use App\Http\Controllers\admins\SanPhamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +19,5 @@ Route::get('/', function () {
 });
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('danhmucs', DanhMucController::class);
-
+    Route::resource("sanpham", SanPhamController::class);
 });
