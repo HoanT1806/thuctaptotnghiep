@@ -20,4 +20,5 @@ Route::get('/', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('danhmucs', DanhMucController::class);
     Route::resource("sanpham", SanPhamController::class);
+    Route::resource("chucvus", ChucVuController::class);
 });
