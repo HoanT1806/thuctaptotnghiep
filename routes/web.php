@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
