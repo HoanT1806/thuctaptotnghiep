@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admins\PtttController;
 use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\admins\SanPhamController;
@@ -25,4 +26,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource("sanpham", SanPhamController::class);
     Route::resource("chucvus", ChucVuController::class);
     Route::resource("taikhoan", taikhoanController::class);
+    Route::resource('pttt', PtttController::class);
+
 });
