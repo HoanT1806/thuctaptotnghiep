@@ -6,7 +6,7 @@ use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
-
+use App\Http\Controllers\admins\DonHangController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,5 +27,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource("chucvus", ChucVuController::class);
     Route::resource("taikhoan", taikhoanController::class);
     Route::resource('pttt', PtttController::class);
+    Route::resource('donhang', DonHangController::class);
 
 });
