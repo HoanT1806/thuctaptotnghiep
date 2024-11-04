@@ -7,6 +7,9 @@ use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
 use App\Http\Controllers\admins\DonHangController;
+use App\Http\Controllers\admins\BinhLuanController;
+use App\Http\Controllers\clients\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,13 +23,19 @@ use App\Http\Controllers\admins\DonHangController;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('danhmucs', DanhMucController::class);
+})->name('home');
+Route::middleware(['auth',CheckRoleAdminMiddleware::class])->prefix("admin")->name("admin.")->group(function () {
     Route::resource("sanpham", SanPhamController::class);
-    Route::resource("chucvus", ChucVuController::class);
     Route::resource("taikhoan", taikhoanController::class);
     Route::resource('pttt', PtttController::class);
     Route::resource('donhang', DonHangController::class);
-
+    Route::resource("chucvus", ChucvuController::class); 
+    Route::resource('danhmucs', DanhMucController::class);
+    Route::resource('binhluan',BinhLuanController::class);
 });
+Route::get('login', [AuthController::class, 'showFormLogin']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'showFormRegister']);
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+//admin
