@@ -8,7 +8,8 @@ use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
 use App\Http\Controllers\admins\DonHangController;
 use App\Http\Controllers\admins\BinhLuanController;
-use App\Http\Controllers\clients\AuthController;
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckRoleAdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admins\BinhLuanRequest;
-use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\BinhLuan;
+
 
 class BinhLuanController extends Controller
 {
