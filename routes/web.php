@@ -9,7 +9,7 @@ use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Controllers\admins\TaiKhoanController;
-use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\admins\AdminController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckRoleAdminMiddleware;
@@ -21,6 +21,7 @@ use App\Http\Controllers\clients\DonHangController as  ClientDonHang;
 use App\Http\Controllers\clients\BinhLuanController as clientBinhLuan;
 use App\Http\Controllers\admins\BinhLuanController;
 use App\Http\Controllers\clients\TaiKhoanController as clientTaiKhoan;
+use App\Http\Controllers\clients\PaymentController;
 
 
 Route::get('/', function () {
@@ -46,3 +47,30 @@ Route::get("/",function(){
 });
 
 Route::get('/adminhome', [AdminController::class, 'index'])->name('adminhome');
+Route::prefix('/')->name("client.")->group(function(){
+   Route::get("/trang-chu",[HomeController::class,"index"])->name("index");
+   Route::get("/san-pham-chi-tiet/{id}",[ClientSanPham::class,"sanphamchitiet"])->name("sanphamchitiet");   
+   Route::get("/client/logout",[HomeController::class,"logout"])->name("logout");
+   Route::get("/client/cart",[GioHangController::class,"index"])->name("cart");
+   Route::post("/client/cart-vocher",[GioHangController::class,"index"])->name("cartvocher");       
+   Route::get("/client/cart/checkout",[GioHangController::class,"checkout"])->name("cartcheckout");
+   Route::post("/client/cart/muahang",[ClientDonHang::class,"muahang"])->name("cartmuahang");
+   Route::get("/client/donhang/{id}/thanhcong",[ClientDonHang::class,"muahangthanhcong"])->name("muahangthanhcong");
+   Route::post("/client/thembinhluan",[clientBinhLuan::class,'store']);
+   Route::get("/client/taikhoan/dashboard",[clientTaiKhoan::class,"index"])->name("qltaikhoan");
+   Route::get("/client/taikhoan/chitiet",[clientTaiKhoan::class,"chitiet"])->name("qltaikhoanchitiet");
+   Route::get("/client/qlDonHang/",[ClientDonHang::class,"qldonhang"])->name("qldonhang");
+   Route::get("/client/qlDonHang/{id}",[ClientDonHang::class,"donhangchitiet"])->name("donhangchitiet");
+   Route::get("/client/danh-muc/{id}",[HomeController::class,"getspbyid"])->name("danhmucsanpham");
+   Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
+   Route::get("/client/magiamgia",[GioHangController::class,"checkCoupon"])->name("magiamgia");
+
+});
+Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
+Route::post("/client/register",[HomeController::class,"register"])->name("client.register");
+Route::post('/client/addCat',[ClientSanPham::class,"themSpGioHang"])->name("client.addCat");    
+Route::delete("/client/cart/delete/{id}",[ClientSanPham::class,"deleteGioHang"])->name("client.deletecart");
+Route::put("/client/cart/update/{id}",[GioHangController::class,"updateGioHang"])->name("client.updatecart");
+
+Route::post("/vnpay_payment",[PaymentController::class,'vnpay_payment']);
+Route::post("/momo_payment",[PaymentController::class,'momo_payment']);
